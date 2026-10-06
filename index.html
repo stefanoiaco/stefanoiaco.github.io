@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio of Stefano Iacovino — Computer Science student focused on software development and artificial intelligence." />
+  <title>Stefano Iacovino | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a2f;
+      --text: #eef3ff;
+      --muted: #aab5d1;
+      --accent: #7aa2ff;
+      --accent-2: #a7c1ff;
+      --border: rgba(255,255,255,.09);
+      --shadow: 0 18px 55px rgba(0,0,0,.28);
+      --radius: 22px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(122,162,255,.12), transparent 34%),
+        radial-gradient(circle at 80% 20%, rgba(167,193,255,.08), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(11,16,32,.72);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      min-height: 72px; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+    }
+    .brand { font-weight: 800; letter-spacing: -.02em; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 18px; font-size: .95rem; color: var(--muted); }
+    .nav-links a:hover { color: var(--text); }
+    .hero { padding: 96px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 36px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; padding: 8px 12px; border: 1px solid var(--border);
+      border-radius: 999px; color: var(--accent-2); background: rgba(255,255,255,.03);
+      font-size: .92rem;
+    }
+    h1,h2,h3 { margin-top: 0; line-height: 1.12; }
+    h1 { margin: 20px 0 18px; font-size: clamp(2.6rem, 7vw, 5.8rem); letter-spacing: -.055em; }
+    .hero p { max-width: 760px; font-size: 1.15rem; color: var(--muted); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 46px; padding: 0 18px; border-radius: 14px;
+      border: 1px solid var(--border); font-weight: 700; transition: .2s ease;
+    }
+    .btn-primary { background: var(--accent); color: #08111f; border-color: transparent; }
+    .btn-secondary { background: rgba(255,255,255,.04); }
+    .btn:hover { transform: translateY(-2px); }
+    .hero-card, .about-card, .timeline-item, .contact, .project-card {
+      border: 1px solid var(--border);
+    }
+    .hero-card {
+      padding: 28px; border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      box-shadow: var(--shadow);
+    }
+    .hero-card strong { display: block; margin-bottom: 6px; font-size: 1.05rem; }
+    .hero-card span { color: var(--muted); }
+    section { padding: 72px 0; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 30px; }
+    .section-heading h2 { margin-bottom: 8px; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -.04em; }
+    .section-heading p { margin: 0; color: var(--muted); max-width: 650px; }
+    .about-card { padding: 30px; background: rgba(255,255,255,.035); border-radius: var(--radius); }
+    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .project-card {
+      display: flex; flex-direction: column; min-height: 100%;
+      padding: 24px; background: var(--panel); border-radius: var(--radius); box-shadow: var(--shadow);
+    }
+    .project-top { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .badge {
+      display: inline-flex; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid var(--border); color: var(--accent-2);
+      background: rgba(122,162,255,.08); font-size: .82rem;
+    }
+    .project-card h3 { margin-bottom: 12px; font-size: 1.4rem; }
+    .project-card p { color: var(--muted); margin-top: 0; }
+    .project-link { margin-top: auto; padding-top: 18px; font-weight: 700; color: var(--accent-2); }
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill {
+      padding: 9px 12px; border-radius: 12px; border: 1px solid var(--border);
+      background: rgba(255,255,255,.035); color: var(--muted);
+    }
+    .timeline { display: grid; gap: 16px; }
+    .timeline-item { padding: 22px 24px; border-radius: 18px; background: rgba(255,255,255,.035); }
+    .timeline-item h3 { margin-bottom: 6px; }
+    .timeline-item p { margin: 0; color: var(--muted); }
+    .contact {
+      text-align: center; padding: 42px; border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(122,162,255,.11), rgba(255,255,255,.035));
+    }
+    .contact p { color: var(--muted); }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 22px; }
+    footer { padding: 28px 0 40px; color: var(--muted); font-size: .92rem; text-align: center; }
+    @media (max-width: 900px) {
+      .hero-grid, .projects { grid-template-columns: 1fr; }
+      .hero { padding-top: 72px; }
+      .nav-inner { padding: 12px 0; align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">Stefano Iacovino</a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Computer Science Student · Italy</span>
+          <h1>Software, AI and practical digital solutions.</h1>
+          <p>
+            I am Stefano Iacovino, a Computer Science student at the University of Molise.
+            I enjoy building software products, exploring artificial intelligence, and turning
+            real-world needs into usable digital solutions.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-secondary" href="mailto:stefano.iacovino05@gmail.com">Contact Me</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <strong>Current focus</strong>
+          <span>Software Development · Artificial Intelligence · Web Applications</span>
+          <br><br>
+          <strong>Education</strong>
+          <span>Bachelor's Degree in Computer Science — Università degli Studi del Molise</span>
+          <br><br>
+          <strong>International experience</strong>
+          <span>Dublin City University — English immersion / Summer School, 2026</span>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2>About me</h2>
+            <p>A concise overview of my academic background and the way I approach technology.</p>
+          </div>
+        </div>
+        <div class="about-card">
+          <p>
+            I am a third-year Computer Science student at Università degli Studi del Molise (UNIMOL).
+            My interests include software development, artificial intelligence, data-driven applications,
+            and the design of practical digital tools.
+          </p>
+          <p>
+            Alongside my studies, I have worked on independent software projects and digital initiatives,
+            gaining experience in planning, problem solving, user-oriented design and project development.
+            I also serve as a student representative, an experience that has strengthened my communication,
+            organisation and teamwork skills.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2>Projects</h2>
+            <p>Selected software and web projects I have designed or developed.</p>
+          </div>
+        </div>
+        <div class="projects">
+          <article class="project-card">
+            <div class="project-top"><span class="badge">Private Project</span></div>
+            <h3>Pulse 3.0</h3>
+            <p>
+              Gym management software designed to support the day-to-day operations of fitness centres,
+              including member management, subscriptions, courses, bookings, trainers, payments,
+              check-ins and authentication.
+            </p>
+            <div class="project-link">Project overview available on request</div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top"><span class="badge">Private Project</span></div>
+            <h3>InterpelloDocenti.it</h3>
+            <p>
+              A software platform designed to collect and organise teacher vacancy notices published
+              by Italian schools, making them easier to search by subject/class, school and keywords,
+              with support for periodic updates and structured information management.
+            </p>
+            <div class="project-link">Project overview available on request</div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top"><span class="badge">Live Website</span></div>
+            <h3>Starting Finance Club UNIMOL</h3>
+            <p>
+              Official website created for the local Starting Finance university community,
+              designed to present the club, its activities and initiatives through a clear,
+              accessible online presence.
+            </p>
+            <a class="project-link" href="https://sfclubunimol.eu" target="_blank" rel="noopener noreferrer">
+              Visit website →
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2>Skills & interests</h2>
+            <p>Areas I am currently developing through university, projects and independent work.</p>
+          </div>
+        </div>
+        <div class="skills">
+          <span class="skill">Software Development</span>
+          <span class="skill">Web Development</span>
+          <span class="skill">Artificial Intelligence</span>
+          <span class="skill">Data & Databases</span>
+          <span class="skill">Problem Solving</span>
+          <span class="skill">Project Development</span>
+          <span class="skill">Teamwork</span>
+          <span class="skill">Communication</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <h2>Education & experience</h2>
+            <p>Academic, technical and organisational experiences that shaped my profile.</p>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>Computer Science — Università degli Studi del Molise</h3>
+            <p>Bachelor's Degree · Third-year student</p>
+          </div>
+          <div class="timeline-item">
+            <h3>IT Manager — Starting Finance local association</h3>
+            <p>Digital and technical support, including the design and deployment of the club's official website.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Dublin City University — Summer School / English Immersion</h3>
+            <p>Dublin, Ireland · August 2026</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Student Representative — UNIMOL</h3>
+            <p>Experience in student representation, communication, organisation and university initiatives.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <h2>Let's connect</h2>
+          <p>
+            I am open to internships, international experiences, collaborations and opportunities
+            related to software development and computer science.
+          </p>
+          <div class="contact-links">
+            <a class="btn btn-primary" href="mailto:stefano.iacovino05@gmail.com">Personal Email</a>
+            <a class="btn btn-secondary" href="mailto:s.iacovino1@studenti.unimol.it">University Email</a>
+            <a class="btn btn-secondary" href="https://github.com/stefanoiaco" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Stefano Iacovino. Built for GitHub Pages.</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
